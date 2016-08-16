@@ -99,8 +99,7 @@ def conta_caracteres( texto ):
     while i < n:
         char = texto[i]
         lugar_na_lista = indice(char, caracteres)
-
-        if lugar_na_lista == 'None':
+        if lugar_na_lista == None:
             caracteres.append(char)
             frequencia.append(1)
         else:
@@ -134,7 +133,7 @@ def indice(item, lista):
     '''
     n = len(lista)
     i = 0
-    indice = 'None'
+    indice = None
     while i < n:
         if lista[i] == item:
             indice = i
