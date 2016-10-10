@@ -390,16 +390,14 @@ def mac0122(p, r, lista_pontos):
     (3.1622776601683795, [[1, -1], [2, 2]])
     >>> mac0122(4,5,pontos)
     (None, [])
-    >>>
+    >>> 
     '''
+    
+    d_R = None
+    R = []
     q = (r+p)//2
 
-    if len(lista_pontos[p:r]) == 1:
-        return None, []
-    elif len(lista_pontos[p:r]) == 2:
-        dist1 = distancia(lista_pontos[p], lista_pontos[r-1])
-        return dist1, lista_pontos[p:r]
-    elif len(lista_pontos[p:r]) == 3:
+    if len(lista_pontos[p:r]) == 3:
         dist1 = distancia(lista_pontos[q], lista_pontos[p])
         dist2 = distancia(lista_pontos[q], lista_pontos[r-1])
         if dist1 > dist2:
@@ -407,16 +405,12 @@ def mac0122(p, r, lista_pontos):
         else:
             return dist1, [lista_pontos[p], lista_pontos[q]]
     else:
-        d_min_e, pontos_e = mac0122(p, q, lista_pontos)
-        d_min_d, pontos_d = mac0122(q, r, lista_pontos)
+        d_min_e , pontos_e = mac0122(p, q, lista_pontos)
+        d_min_d , pontos_d = mac0122(q, r, lista_pontos)
         d_faixa = min(d_min_e, d_min_d)
         d_R, R = par_mais_proximo_faixa(d_faixa, p, q, r, lista_pontos)
-        if d_R and d_R < d_faixa:
-            return d_R, R
-        elif d_min_e < d_min_d:
-            return d_min_e, pontos_e
-        else:
-            return d_min_d, pontos_d
+        
+
 
 #------------------------------------------------------------
 def distancia_animacao(p0, p1, dist=distancia):
@@ -436,5 +430,5 @@ def distancia_animacao(p0, p1, dist=distancia):
 # A chama main() mais adiante inicia a execução do programa.
 # Comente as linhas a seguir enquanto estiver testando
 # __individualmente__ cada função.
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#    main()
