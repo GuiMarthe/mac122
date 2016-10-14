@@ -236,19 +236,19 @@ def mac0110(p, r, lista_pontos):
     (1.4142135623730951, [[-1, -1], [0, 0]])
     >>> mac0110(3,5,lista)
     (2.23606797749979, [[2, 2], [3, 0]])
-    >>>   
+    >>>
     '''
     closest_points = []
 
     dist_min = None
 
-    if len(lista_pontos) == 0:
+    if len(lista_pontos[p:r]) == 0 or len(lista_pontos[p:r]) == 1:
         return dist_min, closest_points
 
     else:
-        dist_min = distancia(lista_pontos[0], lista_pontos[1])
-        closest_points.append(lista_pontos[0])
-        closest_points.append(lista_pontos[1])
+        dist_min = distancia(lista_pontos[p], lista_pontos[p+1])
+        closest_points.append(lista_pontos[p])
+        closest_points.append(lista_pontos[p+1])
         for i in range(p, r):
             for j in range(p, r):
                 dist = distancia(lista_pontos[i], lista_pontos[j])
@@ -394,7 +394,7 @@ def mac0122(p, r, lista_pontos):
     '''
     q = (r+p)//2
 
-    if len(lista_pontos[p:r]) == 1:
+    if len(lista_pontos[p:r]) == 1 or len(lista_pontos[p:r]) == 0:
         return None, []
     elif len(lista_pontos[p:r]) == 2:
         dist1 = distancia(lista_pontos[p], lista_pontos[r-1])
