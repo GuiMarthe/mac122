@@ -86,7 +86,8 @@ class Vetor:
         >>> w.y
         2
         '''
-        print("Vixe! Ainda não fiz o método Vetor.__init__().")
+        self.x = x
+        self.y = y
 
     #------------------------------------------------------------
     def __str__(self):
@@ -122,7 +123,8 @@ class Vetor:
         '(3.14,2.72)'
         >>> 
         '''
-        return "Vixe! Ainda não fiz o método Vetor.__str__()."
+        return '(%s,%s)' % (str(round(self.x, 2)), str(round(self.y, 2)))
+        
 
     #------------------------------------------------------------
     def __neg__(self):
@@ -155,7 +157,7 @@ class Vetor:
         (-2.1,3.2)
         >>> 
         '''
-        print("Vixe! Ainda não fiz o método Vetor.__neg__().")
+        return(Vetor(x = -self.x, y= -self.y))
     
     #------------------------------------------------------------
     def __add__(self, other):
@@ -180,7 +182,9 @@ class Vetor:
         >>> 
                 
         '''
-        print("Vixe! Ainda não fiz o método Vetor.__add__().")
+        x_sum = self.x + other.x
+        y_sum = self.y + other.y
+        return Vetor(x = x_sum, y = y_sum)
         
     #------------------------------------------------------------
     def __sub__(self, other):
@@ -204,7 +208,9 @@ class Vetor:
         (0,-1)
         >>> 
         '''
-        print("Vixe! Ainda não fiz o método Vetor.__sub__().")
+        x_sub = self.x - other.x
+        y_sub = self.y - other.y
+        return Vetor(x = x_sub, y = y_sub)        
 
    #------------------------------------------------------------
     def __mul__(self, other):
@@ -245,7 +251,7 @@ class Vetor:
         (2,3)
         >>> 
         '''
-        print("Vixe! Ainda não fiz o método Vetor.__mul__().")
+        return Vetor(x = self.x*other, y = self.y*other)
  
     #------------------------------------------------------------
     def __rmul__(self, other):
@@ -271,7 +277,7 @@ class Vetor:
         (1,2.1)
         >>> 
         '''
-        print("Vixe! Ainda não fiz o método Vetor.__rmul__().")
+        return self.__mul__(other)
 
    #------------------------------------------------------------
     def __truediv__(self, other):
@@ -306,7 +312,7 @@ class Vetor:
         (-12,-3.4)
         >>> 
         '''
-        print("Vixe! Ainda não fiz o método Vetor.__truediv__().")
+        return Vetor( x = self.x/other, y = self.y/other)
         
     
     #------------------------------------------------------------
