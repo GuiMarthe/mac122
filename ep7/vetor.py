@@ -13,10 +13,10 @@
   ENTENDO QUE EPS SEM ASSINATURA NÃO SERÃO CORRIGIDOS E,
   AINDA ASSIM, PODERÃO SER PUNIDOS POR DESONESTIDADE ACADÊMICA.
 
-  Nome :
-  NUSP :
-  Turma: MAE, MAP, MAT, IF, Poli, ECA, etc
-  Prof.:
+  Nome : Guilherme Marthe  
+  NUSP : 8661962
+  Turma: MAE
+  Prof.: José Coelho
 
   Referências: Com exceção das rotinas fornecidas no enunciado
   e em sala de aula, caso você tenha utilizado alguma referência,
@@ -123,7 +123,10 @@ class Vetor:
         '(3.14,2.72)'
         >>> 
         '''
-        return '(%s,%s)' % (str(round(self.x, 2)), str(round(self.y, 2)))
+        xx = float(self.x)
+        yy = float(self.y)
+
+        return "(%.3g, %.3g)" % (xx, yy)
         
 
     #------------------------------------------------------------
@@ -334,11 +337,12 @@ class Vetor:
         >>> u = Vetor(2,0)
         >>> v.distancia(u)
         2.0
-        >>> u.distancia(w)
+        >>> u.distancia(w)  
         1.4142135623730951
         >>> 
 
         '''
-        print("Vixe! Ainda não fiz o método Vetor.distancia().")
-        return 0
+
+        R = math.sqrt((self.x - other.x)**2 + (self.x - other.y)**2)
+        return R
  

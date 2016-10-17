@@ -13,10 +13,10 @@
   ENTENDO QUE EPS SEM ASSINATURA NÃO SERÃO CORRIGIDOS E,
   AINDA ASSIM, PODERÃO SER PUNIDOS POR DESONESTIDADE ACADÊMICA.
 
-  Nome :
-  NUSP :
-  Turma: MAE, MAP, MAT, IF, Poli, ECA, etc
-  Prof.:
+  Nome : Guilherme Marthe
+  NUSP : 8661962
+  Turma: MAE
+  Prof.: José Coelho
 
   Referências: Com exceção das rotinas fornecidas no enunciado
   e em sala de aula, caso você tenha utilizado alguma referência,
@@ -107,7 +107,13 @@ class Astro:
         >>> astro2.raio
         1737
         '''
-        print("Vixe! Ainda não fiz o método Astro.__init__()")
+        
+        self.nome = nome
+        self.cor = cor
+        self.vet_pos = Vetor(x,y)
+        self.massa = massa
+        self.raio = raio
+
         
     #--------------------------------------------------------------------
     def __str__(self):
@@ -149,10 +155,22 @@ class Astro:
             Raio     = 1.74e+03 km
         >>>
         '''
-        return "Vixe! Ainda não fiz o método Astro.__str__()."
+        print_str = '''Astro:    
+        Nome     = %s    
+        Cor      = %s    
+        Posição  = %s   
+        Massa    = %.3g kg    
+        Raio     = %.3g km''' % (
+          self.nome,
+          self.cor,
+          str(self.vet_pos),
+          float(self.massa),
+          float(self.raio)
+          )
+        return print_str
 
     #--------------------------------------------------------------------
-    def aceleracao_gravitacional(self, vet_pos):
+    def aceleracao_gravitacional(self, vet_ponto):
         '''(Astro, Vetor) -> Vetor
         
         Recebe um referência `self` para um objeto da classe Astro,
@@ -162,25 +180,23 @@ class Astro:
         Calcula e retorna o vetor aceleração da força gravitacional 
         exercida pelo astro sobre um objeto na posição 
         dada pelo vetor posição `vet_pos`.
-        
         Pré-condição: a distância entre [x_a,y_a] e [x,y] não é
         "próxima" de zero.
-        
         Exemplos:
 
         >>> astro1 = Astro("Terra","blue",0,0,5.972e+24,6371)
-        >>> vet_pos1 = Vetor(300000,300000)
+        >>> vet_pos1 = Vetimor(300000,300000)
         >>> vet_a = astro1.aceleracao_gravitacional(vet_pos1)
         >>> type(vet_a)
         <class 'vetor.Vetor'>
         >>> print(vet_a)
         (-20.3,-20.3)
-        >>> 
+        >>>
         >>> vet_pos2 = Vetor(6371,0)
         >>> vet_a = astro1.aceleracao_gravitacional(vet_pos2)
         >>> print(vet_a)
         (-1.27e+05,-0)
-        >>> 
+        >>>
         >>> astro2 = Astro("bla","bla-bla",0,0,1000,100)
         >>> vet_pos = Vetor(1000,-1000)
         >>> vet_acel = astro2.aceleracao_gravitacional(vet_pos)
@@ -195,7 +211,9 @@ class Astro:
         (-8.65e-13,-0)
         >>> G
         8.65e-13
-        >>> 
+        >>>
         '''
-        print("Vixe! Ainda não fiz o método Astro.aceleracao_gravitacional().")
-       
+        fs = (self.vet_pos - vet_ponto)
+        fs = fs/math.sqrt(fs.x**2 + fs.y**2)
+        Res = fs * G * self.massa * (1/(self.vet_pos.distancia(vet_ponto))**2)
+        return Res     
